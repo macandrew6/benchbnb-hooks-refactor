@@ -1,0 +1,170 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body {
+  font-family: "Abel", sans-serif;
+}
+
+/* Nav Bar */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(
+    to bottom,
+    rgb(146, 146, 146),
+    rgb(255, 255, 255) 95%
+  );
+  margin: -10px -10px 10px -10px;
+}
+.app-title {
+  margin-left: 10px;
+}
+.greeting-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 250px;
+  margin-right: 10px;
+}
+
+/* Session Form */
+.session-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+}
+
+.session-form {
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 30px;
+  height: 300px;
+  width: 250px;
+  text-align: center;
+}
+
+input {
+  width: 60%;
+  padding: 5px;
+  margin: 10px 5px;
+}
+
+button {
+  padding: 10px;
+}
+
+/* Map */
+#map {
+  width: 700px;
+  height: 700px;
+}
+
+/* Bench Show */
+.bench-show-master-container {
+  /* background-color: rgba(110, 128, 185, 0.349); */
+}
+
+.bench-show-container {
+  display: flex;
+  height: 150vh;
+  justify-content: space-evenly;
+}
+
+.link-to-benches {
+  position: relative;
+  font-size: large;
+  border: 1px solid black;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.picture-carosel {
+  display: flex;
+  margin: 10px;
+}
+
+.lefthalf-bench-show {
+  width: 40%;
+}
+
+.righthalf-bench-show {
+  width: 700px;
+  height: 700px;
+  box-shadow: 0 0 15px 20px rgba(56, 67, 104, 0.4);
+}
+
+/* Reviews */
+.reviews-index-container {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.review-index-item {
+  padding: 20px 10px 20px 10px;
+  margin-bottom: 10px;
+  /* have border-bottom for every list item except the last one */
+  border-bottom: 1px solid darkgray;
+}
+
+/* Search */
+.search-page-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.min-max-input {
+  width: 25px;
+}
+
+.bench-index {
+  overflow: scroll;
+  height: 592px;
+}
+
+.bench-index-item-container {
+  display: flex;
+  align-items: center;
+  border-radius: 30%;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(161, 161, 161, 0.726);
+  margin: 3px;
+  background: linear-gradient(
+    to right,
+    rgb(146, 146, 146),
+    rgb(255, 255, 255) 75%
+  );
+}
+
+.bench-description {
+  margin-left: 10px;
+}
+
+/* Bench Form */
+.bench-form {
+  border: 1px solid lightgray;
+  padding: 20px;
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btn.disabled {
+  background: rgba(230, 230, 230, 0.466);
+  color: rgb(66, 66, 66);
+  cursor: not-allowed;
+}
