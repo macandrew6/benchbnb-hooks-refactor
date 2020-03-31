@@ -8,24 +8,10 @@ const BenchForm = ({ loading, createBench, lat, lng, history }) => {
   const [photoFiles, setPhotoFiles] = useState([]);
   const [photoUrls, setPhotoUrls] = useState([]);
   const descRef = useRef(null);
-  const seatingRef = useRef(null);
-  const submitRef = useRef(null);
 
   useEffect(() => {
     descRef.current.focus();
   }, []);
-
-  const descKeyDown = e => {
-    if (e.key === "Enter") {
-      seatingRef.current.focus();
-    }
-  };
-
-  const seatingKeyDown = e => {
-    if (e.key === "Enter") {
-      submitRef.current.focus();
-    }
-  };
 
   const navigateToSearch = () => {
     history.push("/");
@@ -80,8 +66,6 @@ const BenchForm = ({ loading, createBench, lat, lng, history }) => {
       let wildCard = res.bench.id;
       history.push(`/benches/${wildCard}`);
     });
-    submitRef.current.setAttribute("disabled", true);
-    submitRef.current.classList.add("disabled");
   };
 
   const preview =
@@ -110,7 +94,6 @@ const BenchForm = ({ loading, createBench, lat, lng, history }) => {
             <input
               type="text"
               ref={descRef}
-              onKeyDown={descKeyDown}
               onChange={update("description")}
               value={description}
               required
@@ -122,8 +105,6 @@ const BenchForm = ({ loading, createBench, lat, lng, history }) => {
             <br />
             <input
               min="0"
-              ref={seatingRef}
-              onKeyDown={seatingKeyDown}
               type="number"
               onChange={update("seating")}
               value={seating}
@@ -148,12 +129,7 @@ const BenchForm = ({ loading, createBench, lat, lng, history }) => {
             <input type="file" multiple="multiple" onChange={handleFile} />
           </div>
           <br />
-          <button
-            className="btn"
-            ref={submitRef}
-            type="submit"
-            multiple="multiple"
-          >
+          <button className="btn" type="submit" multiple="multiple">
             Create Bench
           </button>
           <br />
