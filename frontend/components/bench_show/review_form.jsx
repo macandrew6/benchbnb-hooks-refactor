@@ -1,66 +1,59 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 
-class ReviewForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      body: '',
-      rating: 5
-    };
-    
-    this.navigateToBenchShow = this.navigateToBenchShow.bind(this);
-    this.handleSubmitReview = this.handleSubmitReview.bind(this);
-  }
+const ReviewForm = ({ createReview, match, history }) => {
+  const [body, setBody] = useState("");
+  const [rating, setRating] = useState(5);
 
-  navigateToBenchShow() {
-    const url = `/benches/${this.props.match.params.benchId}`;
-    this.props.history.push(url);
-  }
-  
-  update(field) {
+  const navigateToBenchShow = () => {
+    const url = `/benches/${match.params.benchId}`;
+    history.push(url);
+  };
+
+  const update = field => {
     return e => {
-      this.setState({
-        [field]: e.target.value
-      });
+      switch (field) {
+        case "rating":
+          return setRating(e.target.value);
+        case "body":
+          return setBody(e.target.value);
+        default:
+          return;
+      }
     };
-  }
-  
-  handleSubmitReview(e) {
+  };
+
+  const handleSubmitReview = e => {
     e.preventDefault();
-    const benchId = parseInt(this.props.match.params.benchId);
-    const review = Object.assign({}, this.state, {bench_id: benchId});
-    this.props.createReview(review);
-    this.navigateToBenchShow();
-  }
-  
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmitReview}>
-          Rating:
-          <br/>
-          <input 
-            type="number" 
-            value={this.state.rating}
-            onChange={this.update('rating')}/>
-          <br/>
-          Comment:
-          <br/>
-          <textarea 
-            type="text" 
-            cols="30"
-            rows="10"
-            value={this.state.body}
-            onChange={this.update('body')}
-            placeholder="write a review here"/>
-          <br/>
-          <button type="submit">Submit Review</button>
-        </form>
-        <button onClick={this.navigateToBenchShow}>Cancel</button>
-      </div>
-    );
-  }
-}
+    const benchId = parseInt(match.params.benchId);
+    const review = Object.assign({}, { body, rating }, { bench_id: benchId });
+    createReview(review);
+    navigateToBenchShow();
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmitReview}>
+        Rating:
+        <br />
+        <input type="number" value={rating} onChange={update("rating")} />
+        <br />
+        Comment:
+        <br />
+        <textarea
+          type="text"
+          cols="30"
+          rows="10"
+          value={body}
+          onChange={update("body")}
+          placeholder="write a review here"
+        />
+        <br />
+        <button type="submit">Submit Review</button>
+      </form>
+      <button onClick={navigateToBenchShow}>Cancel</button>
+    </div>
+  );
+};
 
 export default withRouter(ReviewForm);
