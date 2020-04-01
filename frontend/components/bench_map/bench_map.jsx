@@ -125,14 +125,6 @@ const BenchMap = ({
       });
     } else {
       registerListeners();
-      console.log(
-        singleBench,
-        benches,
-        benchId,
-        fetchBench,
-        updateFilter,
-        history
-      );
       markerManager.updateMarkers(benches);
     }
   }, []);
